@@ -67,5 +67,5 @@ setInterval(() => {
             prev.click();
         }
     }
-}, 1000)
+}, 2500)
 mainFunc()
