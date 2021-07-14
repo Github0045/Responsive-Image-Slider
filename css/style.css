@@ -56,7 +56,7 @@ body {
     transition: transform .2s, background .3s;
     cursor: pointer;
 }
-.controls .buts:disabled {
+.controls .buts.disabled {
     background-color: #c0c0c0;
     cursor: not-allowed;
 }

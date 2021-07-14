@@ -4,6 +4,7 @@ const count = document.querySelector('.count');
 const next = document.getElementById('next');
 const prev = document.getElementById('prev');
 let currImg = 1;
+let clickCount = 0;
 
 for (let i = 1; i <= imgs.length; i++) {
     indexsBox.innerHTML += `<span class="idx">${i}</span>`;
@@ -23,6 +24,7 @@ next.addEventListener('click', () => {
         currImg = imgs.length;
     }
     mainFunc()
+    clickCount++;
 })
 
 prev.addEventListener('click', () => {
@@ -31,6 +33,7 @@ prev.addEventListener('click', () => {
         currImg = 1;
     }
     mainFunc()
+    clickCount--;
 })
 
 function mainFunc() {
@@ -46,14 +49,23 @@ function mainFunc() {
     idx[currImg - 1].classList.add('active');
 
     if (currImg === 1) {
-        prev.disabled = true;
-        next.disabled = false;
+        prev.classList.add('disabled')
+        next.classList.remove('disabled')
     } else if (currImg === imgs.length) {
-        next.disabled = true;
-        prev.disabled = false;
+        next.classList.add('disabled')
+        prev.classList.remove('disabled')
     } else {
-        prev.disabled = false;
-        next.disabled = false;
+        prev.classList.remove('disabled')
+        next.classList.remove('disabled')
     }
 }
+
+setInterval(() => {
+    next.click();
+    if (clickCount >= imgs.length) {
+        for (let i = 1; i <= imgs.length; i++) {
+            prev.click();
+        }
+    }
+}, 1000)
 mainFunc()
